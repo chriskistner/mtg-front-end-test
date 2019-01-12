@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import mtg from 'mtgsdk';
+import SearchForm from './SearchForm.js';
+import CardList from './CardList.js';
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      cards: []
+    }
+  }
+
+findCard = async (name) => {
+  try{
+    const response =await mtg.card.where({ name: name, gameFormat: 'standard'});
+    this.setState({
+      cards: response
+    })
+  }catch(err) {
+    console.log(err)
+  }
+}
+componentDidMount(){
+
+}
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div className='container'>
+            <h1>MTG Card Finder</h1>
+              <SearchForm findCard={this.findCard}/>
+              <CardList foundCards = {this.state.cards} />
+        </div>
       </div>
     );
   }

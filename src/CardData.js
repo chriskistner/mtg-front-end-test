@@ -46,10 +46,10 @@ export default class CardData extends Component {
         const manaCost = this.props.cardData.manaCost;
         return (
             <div className="row border">
-                <div className="col-3">Name:{this.props.cardData.name}</div>
-                <div className="col-3">Cost: {this.generateManaCost(manaCost)}</div>
-                <div className="col-3">Color: {this.props.cardData.colors}</div>
-                <div className="col-3">Type:{this.props.cardData.type}</div>
+                <div className="col-3"><b>Name: </b>{this.props.cardData.name}</div>
+                <div className="col-3"><b>Cost: </b>{this.generateManaCost(manaCost)}</div>
+                <div className="col-3"><b>Color: </b>{this.props.cardData.colors}</div>
+                <div className="col-3"><b>Type: </b>{this.props.cardData.type}</div>
             </div>
         )
     }

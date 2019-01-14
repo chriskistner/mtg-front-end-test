@@ -67,10 +67,11 @@ export default class CardData extends Component {
               right                 : 'auto',
               bottom                : 'auto',
               marginRight           : '-25%',
-              transform             : 'translate(-50%, -50%)'
+              transform             : 'translate(-50%, -50%)',
+              backgroundColor       :  "gray",
+              border                : 3
             }
           };
-          console.log(this.state.isOpen)
         return (
             <div className="row border">
                 <div className="col-3"><b><a onClick={(event) =>
@@ -79,16 +80,21 @@ export default class CardData extends Component {
                     } href="#">{this.props.cardData.name}</a></b></div>
                     <Modal isOpen={this.state.isOpen} onRequestClose={this.closeModal} style={customStyles} contentLabel="Example Modal">
                         <div className="Container">
-                            <div className = "row border-bottom">
-                                <div className="col">
-                                    <button onClick={this.closeModal}>X</button>
+                            <div className = "row border-bottom justify-content-end">
+                                <div className="col-2">
+                                    <button style={{marginBottom: 5}} className="btn btn-sm btn-light" onClick={this.closeModal}>X</button>
                                 </div>
                             </div>
                             <div className = "row border-bottom">
                                 <div className="col">
-                                    <img src={this.props.cardData.imageUrl} alt={this.props.cardData.name} height="500" width="300" />  
+                                    <img style={{marginTop: 5, marginBottom: 5}} src={this.props.cardData.imageUrl} alt={this.props.cardData.name} height="400" width="250" />  
                                 </div>
-                            </div>   
+                            </div>
+                            <div className = "row justify-content-center">
+                                <div className="col align-self-center">
+                                    <button style={{marginTop: 5}} type="button" className="btn btn-success">Add Card to Deck</button>
+                                </div>
+                            </div>      
                         </div>
                     </Modal>
                 <div className="col-3"><b>Cost: </b>{this.generateManaCost(manaCost)}</div>

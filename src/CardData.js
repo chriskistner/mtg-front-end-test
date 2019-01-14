@@ -66,17 +66,31 @@ export default class CardData extends Component {
               left                  : '50%',
               right                 : 'auto',
               bottom                : 'auto',
-              marginRight           : '-50%',
+              marginRight           : '-25%',
               transform             : 'translate(-50%, -50%)'
             }
           };
+          console.log(this.state.isOpen)
         return (
             <div className="row border">
-                <div className="col-3"><b><a onClick={() => this.openModal()} href="#">{this.props.cardData.name}</a></b></div>
-                <Modal isOpen={this.state.IsOpen} onRequestClose={this.closeModal} style={customStyles} contentLabel="Example Modal">
-                    <button onClick={this.closeModal}>close</button>
-                    <img style={{marginLeft: 3}} src={this.props.cardData.imageUrl} alt="Card" height="150" width="100" />
-                </Modal>
+                <div className="col-3"><b><a onClick={(event) =>
+                    {event.preventDefault() 
+                    this.openModal()}
+                    } href="#">{this.props.cardData.name}</a></b></div>
+                    <Modal isOpen={this.state.isOpen} onRequestClose={this.closeModal} style={customStyles} contentLabel="Example Modal">
+                        <div className="Container">
+                            <div className = "row border-bottom">
+                                <div className="col">
+                                    <button onClick={this.closeModal}>X</button>
+                                </div>
+                            </div>
+                            <div className = "row border-bottom">
+                                <div className="col">
+                                    <img src={this.props.cardData.imageUrl} alt={this.props.cardData.name} height="500" width="300" />  
+                                </div>
+                            </div>   
+                        </div>
+                    </Modal>
                 <div className="col-3"><b>Cost: </b>{this.generateManaCost(manaCost)}</div>
                 <div className="col-3"><b>Color: </b>{this.props.cardData.colors}</div>
                 <div className="col-3"><b>Type: </b>{this.props.cardData.type}</div>

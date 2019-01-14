@@ -23,6 +23,7 @@ findCard = async (name) => {
     console.log(err)
   }
 }
+
 componentDidMount(){
 
 }
